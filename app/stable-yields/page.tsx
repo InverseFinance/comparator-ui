@@ -6,7 +6,7 @@ export default async function YieldsPage() {
   const json = await data.json();
   return (
     <>
-      <header className="fixed top-0 flex-wrap items-center justify-center">
+      <header className="flex-wrap items-center justify-center">
         <AppNav activeItem="/stable-yields" />
       </header>
       <div className="flex flex-col gap-4 w-full items-center justify-center">

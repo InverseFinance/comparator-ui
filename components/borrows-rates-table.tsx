@@ -35,7 +35,7 @@ export const BorrowRatesTable = ({
     data: {
         project: string;
         collateral: string;
-        borrowRate: string;
+        borrowRate: number;
         borrowToken: string;
         hasLeverage: boolean;
         type: string;

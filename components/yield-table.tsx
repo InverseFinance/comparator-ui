@@ -17,11 +17,11 @@ const COLUMNS = [
     },
     {
         key: 'avg60',
-        label: '30d Avg.',
+        label: '60d Avg.',
     },
     {
         key: 'avg90',
-        label: '30d Avg.',
+        label: '90d Avg.',
     },
 ]
 
