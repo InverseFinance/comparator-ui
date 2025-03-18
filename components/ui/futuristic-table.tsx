@@ -4,6 +4,17 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const projectImages = {
+  'Frax': 'https://icons.llamao.fi/icons/protocols/frax?w=48&h=48',
+  'Curve': 'https://icons.llamao.fi/icons/protocols/curve?w=48&h=48',
+  'Aave-V3': 'https://icons.llamao.fi/icons/protocols/aave-v3?w=48&h=48',
+  'Silo': 'https://icons.llamao.fi/icons/protocols/silo?w=48&h=48',
+  'Compound': 'https://icons.llamao.fi/icons/protocols/compound?w=48&h=48',
+  'FiRM': 'https://icons.llamao.fi/icons/protocols/inverse-finance?w=48&h=48',
+  'Spark': 'https://icons.llamao.fi/icons/protocols/spark?w=48&h=48',
+  'Fluid': 'https://icons.llamao.fi/icons/protocols/fluid?w=48&h=48',
+}
+
 export default function FuturisticTable({
   data,
   columns
@@ -60,12 +71,17 @@ export default function FuturisticTable({
                 {columns.map((column) => (
                   <td className="p-3 font-extrabold text-xl" key={column.key}>
                     {
+                      column.key === 'project' ?
+                      <div className="flex items-center gap-2">
+                        <Image className="rounded-full" src={projectImages[item["project"]] || `https://icons.llamao.fi/icons/protocols/${item["project"].toLowerCase().replace(/ /g, '-')}?w=48&h=48`} alt={item['project']} width={30} height={30} />
+                        <span className="text-lg">{item["project"]}</span>
+                      </div> :
                       column.key === 'symbol' ?
                         <div className="flex items-center gap-2">
                           <Image className="rounded-full" src={item["image"]} alt={item['symbol']} width={30} height={30} />
                           <span className="text-lg">{item[column.key]}</span>
                         </div>
-                        : item[column.key] ? `${item[column.key]?.toFixed(2)}%` : '-'
+                        : typeof item[column.key] === 'string' ? item[column.key] : typeof item[column.key] === 'boolean' ? item[column.key] ? 'Yes' : 'No' : item[column.key]?.toFixed(2) + '%'
                     }
                   </td>
                 ))}
