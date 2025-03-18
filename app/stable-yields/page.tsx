@@ -10,7 +10,7 @@ export default async function YieldsPage() {
         <AppNav activeItem="/stable-yields" />
       </header>
       <div className="flex flex-col gap-4 w-full items-center justify-center">
-        <YieldTable data={json.rates} />
+        <YieldTable data={json.rates} timestamp={json.timestamp} />
       </div>
     </>
   );

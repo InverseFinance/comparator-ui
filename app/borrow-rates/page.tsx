@@ -10,7 +10,7 @@ export default async function BorrowRatesPage() {
         <AppNav activeItem="/borrow-rates" />
       </header>
       <div className="flex flex-col gap-4 w-full items-center justify-center">
-        <BorrowRatesTable data={json.rates} />
+        <BorrowRatesTable data={json.rates} timestamp={json.timestamp} />
       </div>
     </>
   );

@@ -31,6 +31,7 @@ const COLUMNS = [
 
 export const BorrowRatesTable = ({
     data,
+    timestamp,
 }: {
     data: {
         project: string;
@@ -40,6 +41,7 @@ export const BorrowRatesTable = ({
         hasLeverage: boolean;
         type: string;
     }[];
+    timestamp: number;
 }) => {
-    return <FuturisticTable data={data} columns={COLUMNS} />
+    return <FuturisticTable data={data} columns={COLUMNS} timestamp={timestamp} />
 }

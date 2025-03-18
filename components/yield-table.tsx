@@ -27,6 +27,7 @@ const COLUMNS = [
 
 export const YieldTable = ({
     data,
+    timestamp,
 }: {
     data: {
         symbol: string;
@@ -36,6 +37,7 @@ export const YieldTable = ({
         avg60d: number;
         avg90d: number;
     }[];
+    timestamp: number;
 }) => {
-    return <FuturisticTable data={data} columns={COLUMNS} />
+    return <FuturisticTable data={data} columns={COLUMNS} timestamp={timestamp} />
 }

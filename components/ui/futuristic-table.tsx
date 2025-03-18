@@ -37,9 +37,11 @@ interface Column {
 }
 
 export default function FuturisticTable({
+  timestamp,
   data,
   columns
 }: {
+  timestamp: number;
   data: TableData[];
   columns: Column[];
 }) {
@@ -146,6 +148,7 @@ export default function FuturisticTable({
             </table>
           </div>
         </div>
+        {timestamp && <p className="text-gray-400 text-sm mt-2">Last updated: {new Date(timestamp).toLocaleString()}</p>}
       </motion.div>
     </div>
   );
