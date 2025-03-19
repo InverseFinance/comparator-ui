@@ -14,6 +14,7 @@ const projectImages = {
   'FiRM': 'https://icons.llamao.fi/icons/protocols/inverse-finance?w=48&h=48',
   'Spark': 'https://icons.llamao.fi/icons/protocols/spark?w=48&h=48',
   'Fluid': 'https://icons.llamao.fi/icons/protocols/fluid?w=48&h=48',
+  'Sky': 'https://coin-images.coingecko.com/coins/images/39925/large/sky.jpg?1724827980',
 } as const;
 
 interface TableData {
@@ -39,11 +40,15 @@ interface Column {
 export default function FuturisticTable({
   timestamp,
   data,
-  columns
+  columns,
+  projectCollaterals
 }: {
   timestamp: number;
   data: TableData[];
   columns: Column[];
+  projectCollaterals?: {
+    [key: string]: string[];
+  };
 }) {
   const [sortConfig, setSortConfig] = useState<any>({ key: "apy", direction: "desc" });
   const sortedData = [...data].sort((a, b) => {
@@ -76,8 +81,7 @@ export default function FuturisticTable({
                 <col
                   key={column.key}
                   className={
-                    column.key === 'project' || column.key === 'symbol' ? 'w-[200px]' :
-                      'w-[150px]'
+                    column.className + ' w-min-[150px]'
                   }
                 />
               ))}
@@ -96,15 +100,14 @@ export default function FuturisticTable({
               </tr>
             </thead>
           </table>
-          <div className="overflow-y-auto max-h-[450px]">
+          <div className="overflow-y-auto max-h-[400px]">
             <table className="w-full text-left text-white table-fixed">
               <colgroup>
                 {columns.map((column) => (
                   <col
                     key={column.key}
                     className={
-                      column.key === 'project' || column.key === 'symbol' ? 'w-[200px]' :
-                        'w-[150px]'
+                      column.className + ' w-min-[150px]'
                     }
                   />
                 ))}
@@ -128,7 +131,7 @@ export default function FuturisticTable({
                                 <span className="text-lg">{item["project"]}</span>
                               </div>
                             </a> :
-                            column.key === 'symbol' ?
+                            ['symbol', 'borrowToken'].includes(column.key) ?
                             <a className="underline hover:text-blue-400 transition" href={item.link} target="_blank" rel="noopener noreferrer">
                               <div className="flex items-center gap-2">
                                 <Image className="rounded-full" src={item["image"]} alt={item['symbol']} width={30} height={30} />

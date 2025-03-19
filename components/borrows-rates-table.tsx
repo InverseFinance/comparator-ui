@@ -32,6 +32,7 @@ const COLUMNS = [
 export const BorrowRatesTable = ({
     data,
     timestamp,
+    projectCollaterals,
 }: {
     data: {
         project: string;
@@ -42,6 +43,9 @@ export const BorrowRatesTable = ({
         type: string;
     }[];
     timestamp: number;
+    projectCollaterals: {
+        [key: string]: string[];
+    };
 }) => {
-    return <FuturisticTable data={data} columns={COLUMNS} timestamp={timestamp} />
+    return <FuturisticTable data={data} columns={COLUMNS} timestamp={timestamp} projectCollaterals={projectCollaterals} />
 }

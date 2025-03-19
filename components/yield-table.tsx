@@ -8,6 +8,10 @@ const COLUMNS = [
         label: 'Stablecoin',
     },
     {
+        key: 'project',
+        label: 'Project',
+    },
+    {
         key: 'apy',
         label: 'APY',
     },
@@ -15,13 +19,17 @@ const COLUMNS = [
         key: 'avg30',
         label: '30d Avg.',
     },
-    {
-        key: 'avg60',
-        label: '60d Avg.',
-    },
+    // {
+    //     key: 'avg60',
+    //     label: '60d Avg.',
+    // },
     {
         key: 'avg90',
         label: '90d Avg.',
+    },
+    {
+        key: 'type',
+        label: 'Type',
     },
 ]
 
@@ -36,8 +44,9 @@ export const YieldTable = ({
         avg30d: number;
         avg60d: number;
         avg90d: number;
+        isVault: boolean;
     }[];
     timestamp: number;
 }) => {
-    return <FuturisticTable data={data} columns={COLUMNS} timestamp={timestamp} />
+    return <FuturisticTable data={data?.map(d => ({...d, type: d.isVault ? 'Vault' : 'Lending'}))} columns={COLUMNS} timestamp={timestamp} />
 }

@@ -24,6 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=G-G09P58GBG3`}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G09P58GBG3', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-futuristic`}
       >
@@ -35,10 +51,15 @@ export default function RootLayout({
             <a
               href="https://inverse.finance/firm"
               target="_blank"
+              className="text-blue-300 underline"
+            >
+              Courtesy of Inverse Finance
+            </a>
+            <p
               className="text-blue-300"
             >
-              Powered by Inverse Finance
-            </a>
+              Powered by on-chain data, project's APIs and Defillama
+            </p>
           </footer>
         </div>
       </body>
